@@ -11727,6 +11727,8 @@ Humanoid.Changed:connect(function(Jump)
 	end
 end)
 
+
+
 lscr.Darkness:Clone().Parent = LeftLeg
 lscr.Darkness:Clone().Parent = LeftArm
 
