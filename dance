@@ -227,7 +227,7 @@ local sound = nil
 tool.Equipped:Connect(function()
     local character = player.Character
     if character then
-        Anim = Animator.new(character, 140642938841662)
+        Anim = Animator.new(character, 132886479585903)
         Anim:Play()
         Anim.Stopped:Connect(function()
             Anim:Play()
@@ -277,7 +277,7 @@ local sound = nil
 tool.Equipped:Connect(function()
     local character = player.Character
     if character then
-        Anim = Animator.new(character, 127037272278388)
+        Anim = Animator.new(character, 139483347792972)
         Anim:Play()
         Anim.Stopped:Connect(function()
             Anim:Play()
@@ -1652,5 +1652,53 @@ tool.Unequipped:Connect(function()
         sound:Stop()
         sound:Destroy()
     end
+	local player = game.Players.LocalPlayer
+local backpack = player:WaitForChild("Backpack")
+
+-- Create the tool
+local tool = Instance.new("Tool")
+
+tool.Name = "Hakari"
+tool.RequiresHandle = false
+tool.Parent = backpack
+
+-- Load Animator if not already loaded
+if not getgenv()["Animator"] then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/xhayper/Animator/main/Source/Main.lua"))()
+    end
+
+local Anim = nil
+local sound = nil
+
+tool.Equipped:Connect(function()
+    local character = player.Character
+    if character then
+        Anim = Animator.new(character, 132987857682997)
+        Anim:Play()
+        Anim.Stopped:Connect(function()
+            Anim:Play()
+        end)
+        sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://127848521636375"
+        sound.Volume = 2
+        sound.Looped = true
+        sound.Parent = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+        sound:Play()
+    end
+end)
+
+tool.Unequipped:Connect(function()
+    if Anim then
+        Anim:Stop()
+        Anim:Destroy()
+    end
+    if sound then
+        sound:Stop()
+        sound:Destroy()
+    end
+    print("Dance custom and music stopped")
+end)
+
+
     print("Dance 33 and music stopped")
 end)
