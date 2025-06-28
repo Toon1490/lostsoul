@@ -10522,7 +10522,7 @@ function ApplyAoE(POSITION,RANGE)
 				local TORSO = CHILD:FindFirstChild("Torso") or CHILD:FindFirstChild("UpperTorso")
 				if TORSO then
 					if (TORSO.Position - POSITION).Magnitude <= RANGE then
-						Kill(CHILD)
+					print("ok")	
 					end
 				end
 			end
@@ -10707,7 +10707,6 @@ function Grab()
 			RootPart.CFrame = TORS.CFrame * CF(0,0,2)
 			CreateSound("260411131", TORS, 10, 1)
 			TORS.Anchored = false
-			Kill(HITBODY)
 			ATTACK = false
 			Rooted = false
 			RootPart.Anchored = false
