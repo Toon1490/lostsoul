@@ -10542,7 +10542,7 @@ function Sprint()
 end
 
 function HandBeam()
-	ATTACK = true
+	ATTACK = false
 	local savespeed = Speed
 	Speed = 5
 	for i = 0, 0.5, 0.05 do
@@ -10585,7 +10585,7 @@ function HandBeam()
 end
 
 function Dash()
-	ATTACK = true
+	ATTACK = false
 	local savespeed = Speed
 	Speed = 5
 	CreateSound(235097614, RootPart, 6, 1.5, false)
@@ -10632,7 +10632,7 @@ function Grab()
 		local TORS = HITBODY:FindFirstChild("Torso")
 		local HUMAN = Mouse.Target.Parent:FindFirstChildOfClass("Humanoid")
 		if TORS ~= nil and HUMAN ~= nil then
-			ATTACK = true
+			ATTACK = false
 			Rooted = true
 			TORS.Anchored = true
 			RootPart.CFrame = TORS.CFrame * CF(0,0,4)
@@ -10717,7 +10717,7 @@ function Grab()
 end
 
 function WyvernWinggale()
-	ATTACK = true
+	ATTACK = false
 	local HITFLOOR,HITPOS = Raycast(RootPart.Position, (CF(RootPart.Position, RootPart.Position + VT(0, -1, 0))).lookVector, 4, Character)
 	local RWING,LWING,RWELD,LWELD,FIRE1,FIRE2 = MakeWings(true)
 	CreateSound(FLAP,Torso,5,1,false)
@@ -10766,7 +10766,7 @@ function WyvernWinggale()
 end
 
 function WyvernBreath()
-	ATTACK = true
+	ATTACK = false
 	local RWING,LWING,RWELD,LWELD,FIRE1,FIRE2 = MakeWings(true)
 	CreateSound(FLAP,Torso,5,1,false)
 	local GRAV = VELOC(RootPart,1200,RootPart.CFrame*CF(0,35,25).p)
@@ -10859,7 +10859,7 @@ function WyvernBreath()
 end
 
 function WyvernWingrage()
-	ATTACK = true
+	ATTACK = false
 	local BODIES = {}
 	local VELOCITIES = {}
 	local FIRE = BurningLimb(RightArm)
@@ -11049,7 +11049,7 @@ function WyvernWingrage()
 end
 
 function WyvernEruption()
-	ATTACK = true
+	ATTACK = false
 	for i=0, 2, 0.1 / Animation_Speed do
 		Swait()
 		RootJoint.C0 = Clerp(RootJoint.C0, ROOTC0 * CF(0, 0, -1.2) * ANGLES(RAD(65), RAD(0), RAD(0)), 0.2 / Animation_Speed)
@@ -11141,7 +11141,7 @@ function WyvernEruption()
 end
 
 function ChaoticWyvernOutburst()
-	ATTACK = true
+	ATTACK = false
 	local VELOCITIES = {}
 	local BODIES = {}
 	local RING = MagicRing()
@@ -11402,7 +11402,7 @@ function Warp()
 end
 
 function Overthrower()
-	ATTACK = true
+	ATTACK = false
 	Rooted = true
 	for i=0, 1, 0.1 / Animation_Speed do
 		Swait()
@@ -11455,7 +11455,7 @@ function Overthrower()
 end
 
 function Nightmare_Is_ALIVE()
-	ATTACK = true
+	ATTACK = false
 	CreateSound("459523898",RootPart,10,1,false)
 	CreateSound("459523898",RootPart,10,1,false)
 	CreateSound("223103466",RootPart,3,.8,false)
