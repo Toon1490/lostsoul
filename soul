@@ -11727,31 +11727,6 @@ Humanoid.Changed:connect(function(Jump)
 	end
 end)
 
-coroutine.wrap(function()
-	while true do
-		Swait(25)
-		for index, CHILD in pairs(workspace:GetDescendants()) do
-			if CHILD.ClassName == "Model" and CHILD ~= Character then
-				local HUM = CHILD:FindFirstChildOfClass("Humanoid")
-				if HUM then
-					local TORSO = CHILD:FindFirstChild("Torso") or CHILD:FindFirstChild("UpperTorso")
-					if TORSO then
-						if (TORSO.Position - RootPart.Position ).Magnitude <= 10 then
-							if CHILD:FindFirstChildWhichIsA("Humanoid") then
-								CHILD:FindFirstChildWhichIsA("Humanoid"):TakeDamage(0)
-								if CHILD:FindFirstChildWhichIsA("Humanoid").Health <=0 then
-									Kill(CHILD)
-								end
-							end
-							Lightning(RootPart.Position,TORSO.Position,15,0.25,BrickColor.new("Really black"),math.random(15,35),0.5,0.5,0,true,55) Lightning(RootPart.Position,TORSO.Position,15,0.25,BrickColor.new("Really red"),math.random(15,35),0.5,0.5,0,true,55)
-						end
-					end
-				end
-			end
-		end
-	end
-end)()
-
 lscr.Darkness:Clone().Parent = LeftLeg
 lscr.Darkness:Clone().Parent = LeftArm
 
