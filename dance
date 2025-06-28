@@ -1613,11 +1613,11 @@ local backpack = player:WaitForChild("Backpack")
 
 -- Create the tool
 local tool = Instance.new("Tool")
-tool.Name = "Goofy"
+tool.Name = "Hakari"
 tool.RequiresHandle = false
 tool.Parent = backpack
 
-        writefile("Goofy Song.mp3", game:HttpGet("https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Goofy%20Song.mp3"))
+
 -- Load Animator if not already loaded
 if not getgenv()["Animator"] then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/xhayper/Animator/main/Source/Main.lua"))()
@@ -1629,13 +1629,13 @@ local sound = nil
 tool.Equipped:Connect(function()
     local character = player.Character
     if character then
-        Anim = Animator.new(character, 75148929064618)
+        Anim = Animator.new(character, 132987857682997)
         Anim:Play()
         Anim.Stopped:Connect(function()
             Anim:Play()
         end)
         sound = Instance.new("Sound")
-        sound.SoundId = getcustomasset("Goofy Song.mp3")
+        sound.SoundId = "rbxassetid://127848521636375"
         sound.Volume = 2
         sound.Looped = true
         sound.Parent = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
@@ -1652,10 +1652,10 @@ tool.Unequipped:Connect(function()
         sound:Stop()
         sound:Destroy()
     end
+	local player = game.Players.LocalPlayer
+local backpack = player:WaitForChild("Backpack")
 
-    print("Dance 33 and music stopped")
-
-	-- Create the tool
+-- Create the tool
 local tool = Instance.new("Tool")
 
 tool.Name = "Hakari"
@@ -1698,4 +1698,7 @@ tool.Unequipped:Connect(function()
     end
     print("Dance custom and music stopped")
 end)
+
+
+    print("Dance 33 and music stopped")
 end)
