@@ -10701,6 +10701,9 @@ function Grab()
 				FLA1.Parent = LeftArm
 				FRL1.Parent = RightLeg
 				FLL1.Parent = LeftLeg
+				for _,v in next, HITBODY:GetDescendants() do
+					if(v:IsA'DataModelMesh')then
+						v.Offset = VT(math.random(-50,50)/100,math.random(-50,50)/100,math.random(-50,50)/100)
 					end
 				end	
 			end
