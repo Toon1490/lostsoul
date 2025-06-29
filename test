@@ -10680,7 +10680,6 @@ function Grab()
 			RootPart.CFrame = TORS.CFrame * CF(0,0,2)
 			CreateSound("260411131", TORS, 10, 1)
 			TORS.Anchored = false
-			local WELD = CreateWeldOrSnapOrMotor("Weld", TORS, RightArm, TORS, CF(0,-1,-0.5) * ANGLES(RAD(-90), RAD(0), RAD(0)), CF(0, 0, 0))
 			for i=0, 1, 0.1 / Animation_Speed do
 				Swait()
 				RootJoint.C0 = Clerp(RootJoint.C0,ROOTC0 * CF(0, 0, 0 + 0.05 * COS(SINE / 12)) * ANGLES(RAD(0), RAD(0), RAD(45)), 2 / Animation_Speed)
