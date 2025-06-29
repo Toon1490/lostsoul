@@ -10726,6 +10726,8 @@ function Grab()
 			Rooted = false
 			RootPart.Anchored = false
 			RootPart.CFrame = CF(originalposition)
+			HITBODY.Anchored = false
+			HITBODY.CFrame = CF(originalposition)
 		end
 	end
 end
