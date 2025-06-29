@@ -1,4 +1,4 @@
-
+local source = game:GetObjects("rbxassetid://5390158029")[1]["lost soul"]
 
 
 
@@ -10088,6 +10088,7 @@ function ShakeCam(Length,Intensity)
 	end))
 end
 
+local lscr = source.Script.Holder.LocalScript
 local HEADSHADOW = lscr.HEAD:Clone()
 task.spawn(function()
 	local NEVER_BREAK_JOINTS = false -- If you set this to true it will never break joints (this can create some welding issues, but can save stuff like hinges).
@@ -10879,7 +10880,7 @@ end
 function WyvernWingrage()
 	ATTACK = true
 	local BODIES = {}
-	local VELOCITIES = {}
+--	local VELOCITIES = {}
 	local FIRE = BurningLimb(RightArm)
 	for i=0, 1, 0.1 / Animation_Speed do
 		Swait()
@@ -10921,7 +10922,7 @@ function WyvernWingrage()
 				if TORSO then
 					local DISTANCE = (TORSO.Position - RootPart.Position).Magnitude
 					local GRAV = VELOC(TORSO,850,POS+VT(MRANDOM(-5,5),MRANDOM(-5,5),MRANDOM(-5,5)))
-					table.insert(VELOCITIES,GRAV)
+--					table.insert(VELOCITIES,GRAV)
 					local HUM = BODIES[E]:FindFirstChildOfClass("Humanoid")
 				end
 			end
@@ -10990,12 +10991,12 @@ function WyvernWingrage()
 		CreateSound(EXPLOSION,Torso,10,0.5,false)
 		for i=1, 250 do
 			Swait()
-			for E = 1, #VELOCITIES do
-				if VELOCITIES[E] ~= nil then
-					VELOCITIES[E].D = 800
-					VELOCITIES[E].position = Torso.Position
-				end
-			end
+--			for E = 1, #VELOCITIES do
+--				if VELOCITIES[E] ~= nil then
+--					VELOCITIES[E].D = 800
+--					VELOCITIES[E].position = Torso.Position
+--				end
+--			end
 			for E = 1, #BODIES do
 				if BODIES[E] ~= nil then
 					local TORSO = BODIES[E]:FindFirstChild("HumanoidRootPart") or BODIES[E]:FindFirstChild("Torso") or BODIES[E]:FindFirstChild("UpperTorso")
@@ -11025,11 +11026,11 @@ function WyvernWingrage()
 				end
 			end
 		end
-		for E = 1, #VELOCITIES do
-			if VELOCITIES[E] ~= nil then
-				VELOCITIES[E]:remove()
-			end
-		end
+--		for E = 1, #VELOCITIES do
+--			if VELOCITIES[E] ~= nil then
+--				VELOCITIES[E]:remove()
+--			end
+--		end
 		for _, c in pairs(Character:GetChildren()) do
 			if c.ClassName == "Part" then
 				c.Velocity = VT(0,0,0)
@@ -11160,7 +11161,7 @@ end
 
 function ChaoticWyvernOutburst()
 	ATTACK = true
-	local VELOCITIES = {}
+--	local VELOCITIES = {}
 	local BODIES = {}
 	local RING = MagicRing()
 	RING.CFrame = RootPart.CFrame*CF(0,-2.9,0)
@@ -11198,7 +11199,7 @@ function ChaoticWyvernOutburst()
 				if TORSO then
 					local DISTANCE = (TORSO.Position - RootPart.Position).Magnitude
 					local GRAV = VELOC(TORSO,850,RootPart.CFrame*CF(MRANDOM(-35,35),MRANDOM(60,120),-15-DISTANCE).p)
-					table.insert(VELOCITIES,GRAV)
+--					table.insert(VELOCITIES,GRAV)
 					local HUM = BODIES[E]:FindFirstChildOfClass("Humanoid")
 					if HUM then
 						HUM.Health = HUM.Health / 2
@@ -11329,11 +11330,11 @@ function ChaoticWyvernOutburst()
 				WACKYEFFECT({Time = 100, EffectType = "Swirl", Size = VT(0,0,0), Size2 = VT(225,225,225)*i, Transparency = 0.8, Transparency2 = 1, CFrame = RootPart.CFrame, MoveToPos = nil, RotationX = 0, RotationY = i*3, RotationZ = 0, Material = "Neon", Color = C3(1,1,1), SoundID = nil, SoundPitch = nil, SoundVolume = nil})
 			end
 		end
-		for E = 1, #VELOCITIES do
-			if VELOCITIES[E] ~= nil then
-				VELOCITIES[E]:remove()
-			end
-		end
+--		for E = 1, #VELOCITIES do
+--			if VELOCITIES[E] ~= nil then
+--				VELOCITIES[E]:remove()
+--			end
+--		end
 		ApplyAoE(RootPart.Position,250)
 		local LOOP = 0
 		Swirls()
