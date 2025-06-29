@@ -10633,7 +10633,7 @@ function Grab()
 		local TORS = HITBODY:FindFirstChild("Torso")
 		local HUMAN = Mouse.Target.Parent:FindFirstChildOfClass("Humanoid")
 		if TORS ~= nil and HUMAN ~= nil then
-			ATTACK = false
+			ATTACK = true
 			Rooted = true
 			TORS.Anchored = true
 			RootPart.CFrame = TORS.CFrame * CF(0,0,4)
