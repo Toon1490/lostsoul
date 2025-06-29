@@ -8371,7 +8371,7 @@ local RIGHTSHOULDERC0 = CF(-0.5, 0, 0) * ANGLES(RAD(0), RAD(90), RAD(0))
 local LEFTSHOULDERC0 = CF(0.5, 0, 0) * ANGLES(RAD(0), RAD(-90), RAD(0))
 local DAMAGEMULTIPLIER = 0
 local ANIM = "Idle"
-local ATTACK = false
+local 
 local EQUIPPED = false
 local HOLD = false
 local COMBO = 1
@@ -10501,47 +10501,6 @@ FRL.MeshId,FRL.Scale = "rbxasset://fonts/rightleg.mesh",Vector3.new(PlayerSize,P
 FLL.MeshId,FLL.Scale = "rbxasset://fonts/leftleg.mesh",Vector3.new(PlayerSize,PlayerSize,PlayerSize)
 --><All Attack Functions
 
-function Kill(dude)
-	coroutine.resume(coroutine.create(function()
-		if dude and dude ~= Character then
-			local h = dude:FindFirstChildOfClass("Humanoid")
-			local t = dude:FindFirstChild("Torso") or dude:FindFirstChild("UpperTorso") or dude:FindFirstChild("HumanoidRootPart")
-				if dude then
-					for i,v in next, dude:children() do if v:IsA"LocalScript" or v:IsA"Script" or v:IsA"ModuleScript" then v.Disabled = true wait() v:destroy() end end
-					CreateSound(206082273, deathp, 5, .75)
-					ShakeCam(1,10)
-					if h then h.MaxHealth = 0 h.Health = 0 end
-					for _, c in pairs(dude:GetChildren()) do if c:IsA("BasePart") then c:BreakJoints() c:Destroy() end end
-					dude:BreakJoints()
-					dude:Destroy()
-					for i = 0, math.random(3,7) do
-						WACKYEFFECT({Time = math.random(145,165), EffectType = "Sphere", Size = Vector3.new(10,10,10), Size2 = Vector3.new(5,80,5), Transparency = 0, Transparency2 = 1, CFrame = deathp.CFrame*CFrame.Angles(math.rad(math.random(0,360)),math.rad(math.random(0,360)),math.rad(math.random(0,360))), MoveToPos = nil, RotationX = nil, RotationY = nil, RotationZ = nil, Material = "Neon", Color = Color3.new(1,0,0), SoundID = nil, SoundPitch = nil, SoundVolume = nil, UseBoomerangMath = true, Boomerang = 0, SizeBoomerang = 35})
-					end
-					WACKYEFFECT({Time = math.random(72,82), EffectType = "Sphere", Size = Vector3.new(10,10,10), Size2 = Vector3.new(40,40,40), Transparency = 0.6, Transparency2 = 1, CFrame = deathp.CFrame, MoveToPos = nil, RotationX = nil, RotationY = nil, RotationZ = nil, Material = "Neon", Color = Color3.new(1,0,0), SoundID = nil, SoundPitch = nil, SoundVolume = nil, UseBoomerangMath = true, Boomerang = 0, SizeBoomerang = 35})
-					for i = 0, math.random(5,9) do
-						WACKYEFFECT({Time = math.random(36,41), EffectType = "Sphere", Size = Vector3.new(18,18,18), Size2 = Vector3.new(6,6,6), Transparency = 0, Transparency2 = 1, CFrame = deathp.CFrame, MoveToPos = deathp.CFrame*CFrame.new(math.random(-95,95),math.random(-95,95),math.random(-95,95)).p, RotationX = nil, RotationY = nil, RotationZ = nil, Material = "Neon", Color = Color3.new(1,0,0), SoundID = nil, SoundPitch = nil, SoundVolume = nil, UseBoomerangMath = true, Boomerang = 45, SizeBoomerang = 40})
-					end
-				end
-			end
-		end
-	end))
-end
-
-function ApplyAoE(POSITION,RANGE)
-	for index, CHILD in pairs(workspace:GetDescendants()) do
-		if CHILD.ClassName == "Model" and CHILD ~= Character then
-			local HUM = CHILD:FindFirstChildOfClass("Humanoid")
-			if HUM then
-				local TORSO = CHILD:FindFirstChild("Torso") or CHILD:FindFirstChild("UpperTorso")
-				if TORSO then
-					if (TORSO.Position - POSITION).Magnitude <= RANGE then
-						Kill(CHILD)
-					end
-				end
-			end
-		end
-	end
-end
 
 function Sprint()
 	Speed = 30
@@ -10555,7 +10514,7 @@ function Sprint()
 end
 
 function HandBeam()
-	ATTACK = true
+	
 	local savespeed = Speed
 	Speed = 5
 	for i = 0, 0.5, 0.05 do
@@ -10594,11 +10553,11 @@ function HandBeam()
 		LeftHip.C0 = Clerp(LeftHip.C0, CFrame.new(-1, -1, 0) * CFrame.Angles(math.rad(0), math.rad(-65), math.rad(0)) * CFrame.Angles(math.rad(-5), math.rad(0), math.rad(0)), 1 / 3)
 	end
 	Speed = savespeed
-	ATTACK = false
+	
 end
 
 function Dash()
-	ATTACK = true
+	
 	local savespeed = Speed
 	Speed = 5
 	CreateSound(235097614, RootPart, 6, 1.5, false)
@@ -10634,7 +10593,7 @@ function Dash()
 		RightHip.C0 = Clerp(RightHip.C0, CFrame.new(1, -1, 0) * CFrame.Angles(math.rad(-5), math.rad(75), math.rad(0)) * CFrame.Angles(math.rad(-4), math.rad(0), math.rad(0)), 1 / 3)
 		LeftHip.C0 = Clerp(LeftHip.C0, CFrame.new(-1, -1, 0) * CFrame.Angles(math.rad(0), math.rad(-65), math.rad(0)) * CFrame.Angles(math.rad(-5), math.rad(0), math.rad(0)), 1 / 3)
 	end
-	ATTACK = false
+	
 	Speed = savespeed
 end
 
@@ -10645,7 +10604,7 @@ function Grab()
 		local TORS = HITBODY:FindFirstChild("Torso")
 		local HUMAN = Mouse.Target.Parent:FindFirstChildOfClass("Humanoid")
 		if TORS ~= nil and HUMAN ~= nil then
-			ATTACK = true
+			
 			Rooted = true
 			TORS.Anchored = true
 			RootPart.CFrame = TORS.CFrame * CF(0,0,4)
@@ -10721,7 +10680,7 @@ function Grab()
 			CreateSound("260411131", TORS, 10, 1)
 			TORS.Anchored = false
 			Kill(HITBODY)
-			ATTACK = false
+			
 			Rooted = false
 			RootPart.Anchored = false
 			RootPart.CFrame = CF(originalposition)
@@ -10730,7 +10689,7 @@ function Grab()
 end
 
 function WyvernWinggale()
-	ATTACK = true
+	
 	local HITFLOOR,HITPOS = Raycast(RootPart.Position, (CF(RootPart.Position, RootPart.Position + VT(0, -1, 0))).lookVector, 4, Character)
 	local RWING,LWING,RWELD,LWELD,FIRE1,FIRE2 = MakeWings(true)
 	CreateSound(FLAP,Torso,5,1,false)
@@ -10775,11 +10734,11 @@ function WyvernWinggale()
 		Debris:AddItem(RWING,2)
 		Debris:AddItem(LWING,2)
 	end))
-	ATTACK = false
+	
 end
 
 function WyvernBreath()
-	ATTACK = true
+	
 	local RWING,LWING,RWELD,LWELD,FIRE1,FIRE2 = MakeWings(true)
 	CreateSound(FLAP,Torso,5,1,false)
 	local GRAV = VELOC(RootPart,1200,RootPart.CFrame*CF(0,35,25).p)
@@ -10868,11 +10827,11 @@ function WyvernBreath()
 		Debris:AddItem(RWING,2)
 		Debris:AddItem(LWING,2)
 	end))
-	ATTACK = false
+	
 end
 
 function WyvernWingrage()
-	ATTACK = true
+	
 	local BODIES = {}
 	local VELOCITIES = {}
 	local FIRE = BurningLimb(RightArm)
@@ -11058,11 +11017,11 @@ function WyvernWingrage()
 		UNANCHOR = true
 		RootPart.Anchored = false
 	end
-	ATTACK = false
+	
 end
 
 function WyvernEruption()
-	ATTACK = true
+	
 	for i=0, 2, 0.1 / Animation_Speed do
 		Swait()
 		RootJoint.C0 = Clerp(RootJoint.C0, ROOTC0 * CF(0, 0, -1.2) * ANGLES(RAD(65), RAD(0), RAD(0)), 0.2 / Animation_Speed)
@@ -11150,11 +11109,11 @@ function WyvernEruption()
 	end))
 	UNANCHOR = false
 	RootPart.Anchored = false
-	ATTACK = false
+	
 end
 
 function ChaoticWyvernOutburst()
-	ATTACK = true
+	
 	local VELOCITIES = {}
 	local BODIES = {}
 	local RING = MagicRing()
@@ -11394,7 +11353,7 @@ function ChaoticWyvernOutburst()
 		RWING:remove()
 		LWING:remove()
 	end
-	ATTACK = false
+	
 end
 
 function Warp()
@@ -11415,7 +11374,7 @@ function Warp()
 end
 
 function Overthrower()
-	ATTACK = true
+	
 	Rooted = true
 	for i=0, 1, 0.1 / Animation_Speed do
 		Swait()
@@ -11463,12 +11422,12 @@ function Overthrower()
 		Swait(5)
 	until KEYHOLD == false
 	soundeffect:remove()
-	ATTACK = false
+	
 	Rooted = false
 end
 
 function Nightmare_Is_ALIVE()
-	ATTACK = true
+	
 	CreateSound("459523898",RootPart,10,1,false)
 	CreateSound("459523898",RootPart,10,1,false)
 	CreateSound("223103466",RootPart,3,.8,false)
