@@ -4325,7 +4325,7 @@ function rbxstamper()
 			if(t >=0 and t <=1) then
 				local intersection = ((endPos - startPos) * t) + startPos
 				cellPos = game:GetService("Workspace").Terrain:WorldToCell(intersection)
-				hit = false
+				hit = true
 			end
 		end
 
@@ -6073,8 +6073,7 @@ function rbxstamper()
 			if HighScalabilityLine.Start and HighScalabilityLine.Adorn.Parent and isMegaClusterPart() then
 				if ResolveMegaClusterStamp(checkHighScalabilityStamp) or checkHighScalabilityStamp then
 					-- kill the ghost part
-					stampData.CurrentParts.Parent = nil
-					return true
+					stampData.CurrentParts.Parent = false
 				end
 			end
 
@@ -6128,7 +6127,7 @@ function rbxstamper()
 						end
 
 						-- kill the ghost part
-						stampData.CurrentParts.Parent = nil
+						stampData.CurrentParts.Parent = false
 
 						-- Mark for undo.  It has to happen here or the selection display will come back also.
 						pcall(function() game:GetService("ChangeHistoryService"):SetWaypoint("StamperSingle") end)
@@ -10507,11 +10506,6 @@ function Kill(dude)
 		if dude and dude ~= Character then
 			local h = dude:FindFirstChildOfClass("Humanoid")
 			local t = dude:FindFirstChild("Torso") or dude:FindFirstChild("UpperTorso") or dude:FindFirstChild("HumanoidRootPart")
-			local deathp = Instance.new("Part",Effects) deathp.Anchored = true deathp.Size = Vector3.new() deathp.Transparency = 1 deathp.CanCollide = false deathp.CFrame = t.CFrame
-			coroutine.wrap(function()
-				deathp:Destroy()
-			end)
-			if h then
 				if dude then
 					for i,v in next, dude:children() do if v:IsA"LocalScript" or v:IsA"Script" or v:IsA"ModuleScript" then v.Disabled = true wait() v:destroy() end end
 					CreateSound(206082273, deathp, 5, .75)
@@ -11660,7 +11654,7 @@ function KeyDown(Key)
 end	
 
 
-
+local ActualVelocity = Vector3.new(0,0,0)
 if lplr == Player then
 	spawn(function()
 		while true do
@@ -11677,15 +11671,15 @@ if lplr == Player then
 end
 --local Last = RootPart.Position
 function Movement(v, Speed)
---	for i,v2 in pairs(v) do
---		ActualVelocity = Speed[i]
+	for i,v2 in pairs(v) do
+		ActualVelocity = Speed[i]
 		--if v[i].p ~= Last then
 			--RootPart.CFrame = v[i]
 			--Last = v[i].p
---			ArtificialHB.Event:wait()
+			ArtificialHB.Event:wait()
 		--end
---	end
---end
+	end
+end
 
 
 
@@ -11745,7 +11739,7 @@ while true do
 		v:Stop();
 	end
 	SINE = SINE + CHANGE
---	TORSOVELOCITY=(ActualVelocity*Vector3.new(1,0,1)).magnitude
+	TORSOVELOCITY=(ActualVelocity*Vector3.new(1,0,1)).magnitude
 	if lplr == Player then
 		TORSOVELOCITY=(RootPart.Velocity*Vector3.new(1,0,1)).magnitude
 	end
