@@ -8372,7 +8372,7 @@ local RIGHTSHOULDERC0 = CF(-0.5, 0, 0) * ANGLES(RAD(0), RAD(90), RAD(0))
 local LEFTSHOULDERC0 = CF(0.5, 0, 0) * ANGLES(RAD(0), RAD(-90), RAD(0))
 local DAMAGEMULTIPLIER = 0
 local ANIM = "Idle"
-local ATTACK = false
+-- local ATTACK = false
 local EQUIPPED = false
 local HOLD = false
 local COMBO = 1
@@ -10502,52 +10502,52 @@ FRL.MeshId,FRL.Scale = "rbxasset://fonts/rightleg.mesh",Vector3.new(PlayerSize,P
 FLL.MeshId,FLL.Scale = "rbxasset://fonts/leftleg.mesh",Vector3.new(PlayerSize,PlayerSize,PlayerSize)
 --><All Attack Functions
 
-function Kill(dude)
-	coroutine.resume(coroutine.create(function()
-		if dude and dude ~= Character then
-			local h = dude:FindFirstChildOfClass("Humanoid")
-			local t = dude:FindFirstChild("Torso") or dude:FindFirstChild("UpperTorso") or dude:FindFirstChild("HumanoidRootPart")
-			local deathp = Instance.new("Part",Effects) deathp.Anchored = true deathp.Size = Vector3.new() deathp.Transparency = 1 deathp.CanCollide = false deathp.CFrame = t.CFrame
-			coroutine.wrap(function()
-				deathp:Destroy()
-			end)
-			if h then
-				if dude then
-					for i,v in next, dude:children() do if v:IsA"LocalScript" or v:IsA"Script" or v:IsA"ModuleScript" then v.Disabled = true wait() v:destroy() end end
-					CreateSound(206082273, deathp, 5, .75)
-					ShakeCam(1,10)
-					if h then h.MaxHealth = 0 h.Health = 0 end
-					for _, c in pairs(dude:GetChildren()) do if c:IsA("BasePart") then c:BreakJoints() c:Destroy() end end
-					dude:BreakJoints()
-					dude:Destroy()
-					for i = 0, math.random(3,7) do
-						WACKYEFFECT({Time = math.random(145,165), EffectType = "Sphere", Size = Vector3.new(10,10,10), Size2 = Vector3.new(5,80,5), Transparency = 0, Transparency2 = 1, CFrame = deathp.CFrame*CFrame.Angles(math.rad(math.random(0,360)),math.rad(math.random(0,360)),math.rad(math.random(0,360))), MoveToPos = nil, RotationX = nil, RotationY = nil, RotationZ = nil, Material = "Neon", Color = Color3.new(1,0,0), SoundID = nil, SoundPitch = nil, SoundVolume = nil, UseBoomerangMath = true, Boomerang = 0, SizeBoomerang = 35})
-					end
-					WACKYEFFECT({Time = math.random(72,82), EffectType = "Sphere", Size = Vector3.new(10,10,10), Size2 = Vector3.new(40,40,40), Transparency = 0.6, Transparency2 = 1, CFrame = deathp.CFrame, MoveToPos = nil, RotationX = nil, RotationY = nil, RotationZ = nil, Material = "Neon", Color = Color3.new(1,0,0), SoundID = nil, SoundPitch = nil, SoundVolume = nil, UseBoomerangMath = true, Boomerang = 0, SizeBoomerang = 35})
-					for i = 0, math.random(5,9) do
-						WACKYEFFECT({Time = math.random(36,41), EffectType = "Sphere", Size = Vector3.new(18,18,18), Size2 = Vector3.new(6,6,6), Transparency = 0, Transparency2 = 1, CFrame = deathp.CFrame, MoveToPos = deathp.CFrame*CFrame.new(math.random(-95,95),math.random(-95,95),math.random(-95,95)).p, RotationX = nil, RotationY = nil, RotationZ = nil, Material = "Neon", Color = Color3.new(1,0,0), SoundID = nil, SoundPitch = nil, SoundVolume = nil, UseBoomerangMath = true, Boomerang = 45, SizeBoomerang = 40})
-					end
-				end
-			end
-		end
-	end))
-end
+-- function Kill(dude)
+--	coroutine.resume(coroutine.create(function()
+--		if dude and dude ~= Character then
+--			local h = dude:FindFirstChildOfClass("Humanoid")
+--			local t = dude:FindFirstChild("Torso") or dude:FindFirstChild("UpperTorso") or dude:FindFirstChild("HumanoidRootPart")
+--			local deathp = Instance.new("Part",Effects) deathp.Anchored = true deathp.Size = Vector3.new() deathp.Transparency = 1 deathp.CanCollide = false deathp.CFrame = t.CFrame
+--			coroutine.wrap(function()
+--				deathp:Destroy()
+--			end)
+--			if h then
+--				if dude then
+	--				for i,v in next, dude:children() do if v:IsA"LocalScript" or v:IsA"Script" or v:IsA"ModuleScript" then v.Disabled = true wait() v:destroy() end end
+--					CreateSound(206082273, deathp, 5, .75)
+--					ShakeCam(1,10)
+--					if h then h.MaxHealth = 0 h.Health = 0 end
+--					for _, c in pairs(dude:GetChildren()) do if c:IsA("BasePart") then c:BreakJoints() c:Destroy() end end
+	--				dude:BreakJoints()
+	--				dude:Destroy()
+--					for i = 0, math.random(3,7) do
+	--					WACKYEFFECT({Time = math.random(145,165), EffectType = "Sphere", Size = Vector3.new(10,10,10), Size2 = Vector3.new(5,80,5), Transparency = 0, Transparency2 = 1, CFrame = deathp.CFrame*CFrame.Angles(math.rad(math.random(0,360)),math.rad(math.random(0,360)),math.rad(math.random(0,360))), MoveToPos = nil, RotationX = nil, RotationY = nil, RotationZ = nil, Material = "Neon", Color = Color3.new(1,0,0), SoundID = nil, SoundPitch = nil, SoundVolume = nil, UseBoomerangMath = true, Boomerang = 0, SizeBoomerang = 35})
+--					end
+--					WACKYEFFECT({Time = math.random(72,82), EffectType = "Sphere", Size = Vector3.new(10,10,10), Size2 = Vector3.new(40,40,40), Transparency = 0.6, Transparency2 = 1, CFrame = deathp.CFrame, MoveToPos = nil, RotationX = nil, RotationY = nil, RotationZ = nil, Material = "Neon", Color = Color3.new(1,0,0), SoundID = nil, SoundPitch = nil, SoundVolume = nil, UseBoomerangMath = true, Boomerang = 0, SizeBoomerang = 35})
+--					for i = 0, math.random(5,9) do
+--						WACKYEFFECT({Time = math.random(36,41), EffectType = "Sphere", Size = Vector3.new(18,18,18), Size2 = Vector3.new(6,6,6), Transparency = 0, Transparency2 = 1, CFrame = deathp.CFrame, MoveToPos = deathp.CFrame*CFrame.new(math.random(-95,95),math.random(-95,95),math.random(-95,95)).p, RotationX = nil, RotationY = nil, RotationZ = nil, Material = "Neon", Color = Color3.new(1,0,0), SoundID = nil, SoundPitch = nil, SoundVolume = nil, UseBoomerangMath = true, Boomerang = 45, SizeBoomerang = 40})
+	--				end
+	--			end
+--			end
+--		end
+--	end))
+-- end
 
-function ApplyAoE(POSITION,RANGE)
-	for index, CHILD in pairs(workspace:GetDescendants()) do
-		if CHILD.ClassName == "Model" and CHILD ~= Character then
-			local HUM = CHILD:FindFirstChildOfClass("Humanoid")
-			if HUM then
-				local TORSO = CHILD:FindFirstChild("Torso") or CHILD:FindFirstChild("UpperTorso")
-				if TORSO then
-					if (TORSO.Position - POSITION).Magnitude <= RANGE then
-						Kill(CHILD)
-					end
-				end
-			end
-		end
-	end
-end
+--function ApplyAoE(POSITION,RANGE)
+--	for index, CHILD in pairs(workspace:GetDescendants()) do
+--		if CHILD.ClassName == "Model" and CHILD ~= Character then
+--			local HUM = CHILD:FindFirstChildOfClass("Humanoid")
+--			if HUM then
+--				local TORSO = CHILD:FindFirstChild("Torso") or CHILD:FindFirstChild("UpperTorso")
+--				if TORSO then
+--					if (TORSO.Position - POSITION).Magnitude <= RANGE then
+--						Kill(CHILD)
+--					end
+--				end
+--			end
+--		end
+--	end
+-- end
 
 function Sprint()
 	Speed = 30
@@ -10726,7 +10726,7 @@ function Grab()
 			RootPart.CFrame = TORS.CFrame * CF(0,0,2)
 			CreateSound("260411131", TORS, 10, 1)
 			TORS.Anchored = false
-			Kill(HITBODY)
+--			Kill(HITBODY)
 			ATTACK = false
 			Rooted = false
 			RootPart.Anchored = false
@@ -11891,13 +11891,13 @@ while true do
 		sick.Looped = true
 		sick.Playing = true
 	end
-	if ATTACK == false then
-		for _, c in pairs(Character:GetChildren()) do
-			if c:IsA("Part") or c:IsA("MeshPart") then
-				c.Anchored = false
-			end
-		end
-	end
+--	if ATTACK == false then
+--		for _, c in pairs(Character:GetChildren()) do
+--			if c:IsA("Part") or c:IsA("MeshPart") then
+--				c.Anchored = false
+--			end
+--		end
+--	end
 	LeftArm.Material = "Neon"
 	LeftLeg.Material = "Neon"
 end	
