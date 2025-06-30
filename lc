@@ -8056,7 +8056,6 @@ end]]
 wait(0.2)
 wait(0.1)
 wait(0.111111156)
-local USERNAME = script.Name
 PlayerGui = Player.PlayerGui
 Cam = workspace.CurrentCamera
 Backpack = Player.Backpack
@@ -12632,3 +12631,14 @@ while true do
 	end
 end
 
+RunService.Heartbeat:Connect(function()
+	SetAngles()
+	MotorAngle()
+	RealChar.HumanoidRootPart.CFrame = FakeCharacter.Torso.CFrame
+end)
+
+RunService.PreSimulation:Connect(function()
+	BaseCol()
+end)
+
+LoadAllAnimations()
