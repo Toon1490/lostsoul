@@ -9315,12 +9315,7 @@ function dmg(dude)
 			coroutine.wrap(function()
 				deathp:Destroy()
 			end)
-			if h and h.Name ~= "not a humanoid"  then
-				if dude then
-					for i,v in next, dude:children() do if v:IsA"LocalScript" or v:IsA"Script" or v:IsA"ModuleScript" then v.Disabled = true wait() v:destroy() end end
-					if dude == targetted then
-						targetted = nil
-					end
+
 					CreateSound(206082273, deathp, 5, .75)
 					if h then h.MaxHealth = 0 h.Health = 0 end
 					for _, c in pairs(dude:GetChildren()) do if c:IsA("BasePart") then c:BreakJoints() c:Destroy() end end
