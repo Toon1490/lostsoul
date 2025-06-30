@@ -674,21 +674,6 @@ function rbxgui()
 				function()
 					scrollMouseCount = scrollMouseCount + 1
 				end)
-			scrollUpButton.MouseButton1Down:connect(
-				function()
-					scrollMouseCount = scrollMouseCount + 1
-
-					scrollUp()
-					local val = scrollMouseCount
-					wait(0.5)
-					while val == scrollMouseCount do
-						if scrollUp() == false then
-							break
-						end
-						wait(0.1)
-					end				
-				end)
-
 			scrollUpButton.Parent = droppedDownMenu
 
 			scrollDownButton = Instance.new("ImageButton")
@@ -706,20 +691,6 @@ function rbxgui()
 				function()
 					scrollMouseCount = scrollMouseCount + 1
 				end)
-			scrollDownButton.MouseButton1Down:connect(
-				function()
-					scrollMouseCount = scrollMouseCount + 1
-
-					scrollDown()
-					local val = scrollMouseCount
-					wait(0.5)
-					while val == scrollMouseCount do
-						if scrollDown() == false then
-							break
-						end
-						wait(0.1)
-					end				
-				end)	
 
 			local scrollbar = Instance.new("ImageLabel")
 			scrollbar.Name = "ScrollBar"
@@ -1005,13 +976,6 @@ function rbxgui()
 			end
 		end)
 
-		slider.MouseButton1Down:connect(function()
-			areaSoak.Visible = true
-			if areaSoakMouseMoveCon then areaSoakMouseMoveCon:disconnect() end
-			areaSoakMouseMoveCon = areaSoak.MouseMoved:connect(function(x,y)
-				setSliderPos(x,slider,sliderPosition,bar,steps)
-			end)
-		end)
 
 		slider.MouseButton1Up:connect(function() cancelSlide(areaSoak) end)
 
@@ -1019,10 +983,6 @@ function rbxgui()
 			sliderPosition.Value = math.min(steps, math.max(1,sliderPosition.Value))
 			local relativePosX = (sliderPosition.Value - 1) / (steps - 1)
 			slider.Position = UDim2.new(relativePosX,-slider.AbsoluteSize.X/2,slider.Position.Y.Scale,slider.Position.Y.Offset)
-		end)
-
-		bar.MouseButton1Down:connect(function(x,y)
-			setSliderPos(x,slider,sliderPosition,bar,steps)
 		end)
 
 		return sliderGui, sliderPosition, sliderSteps
@@ -1139,14 +1099,6 @@ function rbxgui()
 			end
 		end)
 
-		slider.MouseButton1Down:connect(function()
-			areaSoak.Visible = true
-			if areaSoakMouseMoveCon then areaSoakMouseMoveCon:disconnect() end
-			areaSoakMouseMoveCon = areaSoak.MouseMoved:connect(function(x,y)
-				setSliderPos(x,slider,sliderPosition,bar,steps)
-			end)
-		end)
-
 		slider.MouseButton1Up:connect(function() cancelSlide(areaSoak) end)
 
 		sliderPosition.Changed:connect(function(prop)
@@ -1154,18 +1106,6 @@ function rbxgui()
 			local relativePosX = (sliderPosition.Value - 1) / (steps - 1)
 			slider.Position = UDim2.new(relativePosX,-slider.AbsoluteSize.X/2,slider.Position.Y.Scale,slider.Position.Y.Offset)
 			fill.Size = UDim2.new(relativePosX, 0, 1, 0)
-		end)
-
-		bar.MouseButton1Down:connect(function(x,y)
-			setSliderPos(x,slider,sliderPosition,bar,steps)
-		end)
-
-		fill.MouseButton1Down:connect(function(x,y)
-			setSliderPos(x,slider,sliderPosition,bar,steps)
-		end)
-
-		fillLeft.MouseButton1Down:connect(function(x,y)
-			setSliderPos(x,slider,sliderPosition,bar,steps)
 		end)
 
 
@@ -1546,24 +1486,6 @@ function rbxgui()
 			end
 		end
 
-		scrollbar.MouseButton1Down:connect(function(x,y)
-			if scrollbar.Active then
-				scrollStamp = tick()
-				local mouseOffset = y - scrollbar.AbsolutePosition.y
-				if dragCon then dragCon:disconnect() dragCon = nil end
-				if upCon then upCon:disconnect() upCon = nil end
-				local prevY = y
-				local reentrancyGuardMouseScroll = false
-				dragCon = mouseDrag.MouseMoved:connect(function(x,y)
-					if reentrancyGuardMouseScroll then return end
-
-					reentrancyGuardMouseScroll = true
-					if positionScrollBar(x,y,mouseOffset) then
-						recalculate()
-					end
-					reentrancyGuardMouseScroll = false
-
-				end)
 				upCon = mouseDrag.MouseButton1Up:connect(function()
 					scrollStamp = tick()
 					mouseDrag.Parent = nil
@@ -1576,18 +1498,12 @@ function rbxgui()
 
 		local scrollMouseCount = 0
 
-		scrollUpButton.MouseButton1Down:connect(function()
-			scrollUp()
-		end)
 		scrollUpButton.MouseButton1Up:connect(function()
 			scrollStamp = tick()
 		end)
 
 		scrollDownButton.MouseButton1Up:connect(function()
 			scrollStamp = tick()
-		end)
-		scrollDownButton.MouseButton1Down:connect(function()
-			scrollDown()
 		end)
 
 		scrollbar.MouseButton1Up:connect(function()
@@ -2082,47 +1998,7 @@ function rbxgui()
 		end
 
 		local y = 0
-		scrollDrag.MouseButton1Down:connect(function(x,y)
-			if scrollDrag.Active then
-				scrollStamp = tick()
-				local mouseOffset = y - scrollDrag.AbsolutePosition.y
-				local dragCon
-				local upCon
-				dragCon = mouseDrag.MouseMoved:connect(function(x,y)
-					local barAbsPos = scrollbar.AbsolutePosition.y
-					local barAbsSize = scrollbar.AbsoluteSize.y
 
-					local dragAbsSize = scrollDrag.AbsoluteSize.y
-					local barAbsOne = barAbsPos + barAbsSize - dragAbsSize
-					y = y - mouseOffset
-					y = y < barAbsPos and barAbsPos or y > barAbsOne and barAbsOne or y
-					y = y - barAbsPos
-
-					local guiObjects = 0
-					local children = frame:GetChildren()
-					if children then
-						for i, child in ipairs(children) do 
-							if child:IsA("GuiObject") then
-								guiObjects = guiObjects + 1
-							end
-						end
-					end
-
-					local doublePercent = y/(barAbsSize-dragAbsSize)
-					local rowDiff = rowSize
-					local totalScrollCount = guiObjects - (howManyDisplayed - 1)
-					local newScrollPosition = math.floor((doublePercent * totalScrollCount) + 0.5) + rowDiff
-					if newScrollPosition < scrollPosition then
-						rowDiff = -rowDiff
-					end
-
-					if newScrollPosition < 1 then
-						newScrollPosition = 1
-					end
-
-					scrollPosition = newScrollPosition
-					recalculate(nil)
-				end)
 				upCon = mouseDrag.MouseButton1Up:connect(function()
 					scrollStamp = tick()
 					mouseDrag.Parent = nil
@@ -2135,10 +2011,6 @@ function rbxgui()
 
 		local scrollMouseCount = 0
 
-		scrollUpButton.MouseButton1Down:connect(
-			function()
-				scrollUp()
-			end)
 		scrollUpButton.MouseButton1Up:connect(function()
 			scrollStamp = tick()
 		end)
@@ -2147,22 +2019,12 @@ function rbxgui()
 		scrollDownButton.MouseButton1Up:connect(function()
 			scrollStamp = tick()
 		end)
-		scrollDownButton.MouseButton1Down:connect(
-			function()
-				scrollDown()	
-			end)
+
 
 		scrollbar.MouseButton1Up:connect(function()
 			scrollStamp = tick()
 		end)
-		scrollbar.MouseButton1Down:connect(
-			function(x,y)
-				if y > (scrollDrag.AbsoluteSize.y + scrollDrag.AbsolutePosition.y) then
-					scrollDown(y)
-				elseif y < (scrollDrag.AbsolutePosition.y) then
-					scrollUp(y)
-				end
-			end)
+
 
 
 		frame.ChildAdded:connect(function()
@@ -4074,11 +3936,7 @@ function rbxgui()
 			verticalDragger.MouseLeave:connect(function ()
 				verticalDragger.BackgroundColor3 = Color3.new(50/255,50/255,50/255)
 			end)
-			verticalDragger.MouseButton1Down:connect(function(x,y)
-				draggingVertical = true
-				areaSoak.Visible = true
-				startYPos = y
-			end)
+
 			areaSoak.MouseButton1Up:connect(function (  )
 				draggingVertical = false
 				areaSoak.Visible = false
@@ -6375,9 +6233,6 @@ function rbxstamper()
 				movingLock = false
 			end))
 
-			table.insert(mouseCons,Mouse.Button1Down:connect(function()
-				DoStamperMouseDown(Mouse)
-			end))
 
 			table.insert(mouseCons,Mouse.Button1Up:connect(function()
 				stampUpLock = true
@@ -10751,9 +10606,6 @@ function KeyUp(Key)
 	KEYHOLD = false
 end
 
-Mouse.Button1Down:connect(function(NEWKEY)
-	MouseDown(NEWKEY)
-end)
 Mouse.Button1Up:connect(function(NEWKEY)
 	MouseUp(NEWKEY)
 end)
