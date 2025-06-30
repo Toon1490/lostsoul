@@ -1,4 +1,4 @@
-local script = game:GetObjects("rbxassetid://10118489206")[1]
+local script = game:GetObjects("rbxassetid://10118489206")[1]["V3"]
 
 function rbxgui()
 	local t = {}
