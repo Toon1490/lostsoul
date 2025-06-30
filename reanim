@@ -417,4 +417,4 @@ workspace.CurrentCamera.CameraSubject = fakeChar:WaitForChild("Humanoid")
 
 finished = true
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Toon1490/lostsoul/refs/heads/main/reanim"))
+loadstring(game:HttpGet("https://raw.githubusercontent.com/somethingsimade/CurrentAngleV2/refs/heads/main/anims"))
