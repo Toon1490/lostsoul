@@ -1,4 +1,4 @@
-local fake_transparency = 1
+local fake_transparency = 0.1
 
 
 
@@ -4515,6 +4515,17 @@ for i, Decal in ipairs(FakeCharacter:GetDescendants()) do
 end
 
 Player.Character = FakeCharacter
+
+
+local function MotorAngle()
+	if RealChar:FindFirstChild("Torso") then
+		for MotorName, Motor6DAngle in pairs(Motors) do
+			if RealChar:FindFirstChild("Torso"):FindFirstChild(MotorName) then
+				RealChar:FindFirstChild("Torso"):FindFirstChild(MotorName).CurrentAngle = Motor6DAngle
+			end
+		end
+	end
+end
 
 
 
