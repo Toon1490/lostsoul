@@ -63,24 +63,7 @@ end
 	Rig.Name = LocalPlayer.Name
 	RigHumanoid.DisplayName = LocalPlayer.DisplayName
 
-	if Character then
-		if rawget(getgenv(), "replicatesignal") then
-			if InstantRespawn then
-			ShowMessage("Wait!","please wait for at least " .. Players.RespawnTime - 0.1 .. " second.", 10)
-				replicatesignal(LocalPlayer.ConnectDiedSignalBackend)
-				task.wait(Players.RespawnTime - 0.1)
 
-				local RootPart = Character:FindFirstChild("HumanoidRootPart")
-				if RootPart then
-					RootPartCFrame = RootPart.CFrame
-				end
-
-				replicatesignal(LocalPlayer.Kill)
-			end
-		else
-			BreakJoints(Character)
-		end
-	end
 
 	Character = Wait(CharacterAdded)
 
@@ -148,8 +131,6 @@ end
 			sethiddenproperty(Motor6D, "ReplicateCurrentAngle6D", Axis * Angle)
 			sethiddenproperty(Motor6D, "ReplicateCurrentOffset6D", Delta.Position)
 		end
-
-		-- sethiddenproperty(Motor6D, "ReplicateCurrentAngle6D", Axis * Angle)sethiddenproperty(Motor6D, "ReplicateCurrentOffset6D", Delta.Position)
 
 		RootPart.AssemblyAngularVelocity = Vector3zero
 		RootPart.AssemblyLinearVelocity = Vector3zero
