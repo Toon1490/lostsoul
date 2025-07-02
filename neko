@@ -1,16 +1,38 @@
+if getgenv().NekoV1Gaze then
+    ShowMessage("NekoV1", "Script has already been executed.", 4)
+    return
+end
+
+getgenv().NekoV1Gaze = true
+
+ShowMessage("Yeah","gazewazhere", 10)
+
+
+pcall(function()
+local Hatless = loadstring(game:HttpGet("https://raw.githubusercontent.com/somethingsimade/CurrentAngleV2/refs/heads/main/anims"))()
+Character = Hatless.Rig
+Hatless.Rig.Name = "non"
+-- hey go die
+-- also if you steal my taunts and dont credit me for them i'll fucking find you and ban you
+-- big ban bootleg by x5ul
+
+
+Bypass = "death"
 FELOADLIBRARY = {}
 loadstring(game:GetObjects("rbxassetid://5209815302")[1].Source)()
+local Player = game:GetService("Players").LocalPlayer
 local TweenService = game:GetService("TweenService")
 local Create = FELOADLIBRARY.Create
 
 
-local plr = game:GetService("Players").LocalPlayer
-local chr = plr.Character
 
+local Player = game:GetService("Players").LocalPlayer
 
 local ZTfade=false 
 local ZT=false
 
+local MeHasDied = false
+local mouse = Player:GetMouse()
 local agresive = false
 local Target = Vector3.new()
 local Character= workspace.non
@@ -197,7 +219,15 @@ end
 }
 
 
-
+coroutine.wrap(function()
+	while true do
+		if not Character or not Character:FindFirstChild("Humanoid") or Character:FindFirstChild("Humanoid").Health <= 0 then
+			MeHasDied = true
+			break
+		end
+		wait()
+	end
+end)()
 
 
 --//=================================\\
