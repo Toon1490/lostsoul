@@ -19,6 +19,11 @@ end
 	local ParentCharacterToRig = true
 	local RigTransparency = 1
 
+	local fakeChar = originalChar:Clone()
+	fakeChar.Name = LocalPlayer.Name .. "_Fake"
+
+	local poscache = CFrame.new(255, 255, 0)
+
 	local CFrameidentity = CFrame.identity
 	local Inverse = CFrameidentity.Inverse
 	local ToAxisAngle = CFrameidentity.ToAxisAngle
@@ -69,6 +74,18 @@ end
 			ShowMessage("Wait!","please wait for at least " .. Players.RespawnTime - 0.1 .. " second.", 10)
 				replicatesignal(LocalPlayer.ConnectDiedSignalBackend)
 				task.wait(Players.RespawnTime - 0.1)
+
+				local RootPart = Character:FindFirstChild("HumanoidRootPart")
+				if RootPart then
+					RootPartCFrame = RootPart.CFrame
+				end
+
+				replicatesignal(LocalPlayer.Kill)
+			end
+		else
+			BreakJoints(Character)
+		end
+	end
 
 	Character = Wait(CharacterAdded)
 
@@ -158,5 +175,9 @@ tableinsert(Connections, RunService.PreSimulation:Connect(function()
 	end))
 	
 end
+
+newcharRoot.CFrame = poscache + Vector3_new(0, math_random(1, 2) / 322.19, 0)
+else
+	newcharRoot.CFrame = fakeChar.HumanoidRootPart.CFrame + Vector3_new(0, math_random(1, 2) / 322.19, 0)
 
 return Hatless
