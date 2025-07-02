@@ -1,0 +1,176 @@
+local Hatless = {}
+
+
+
+do
+local ShowMessage = function(t, txt, dur)
+    pcall(function()
+        game.StarterGui:SetCore("SendNotification", {
+            Title = t;
+            Text = txt;
+            Icon = "";
+            Duration = dur;
+        })
+    end)
+end
+	local DefaultAnimations = true
+	local DisableCharacterCollisions = true
+	local InstantRespawn = false
+	local ParentCharacterToRig = true
+	local RigTransparency = 1
+
+	local CFrameidentity = CFrame.identity
+	local Inverse = CFrameidentity.Inverse
+	local ToAxisAngle = CFrameidentity.ToAxisAngle
+	local ToEulerAnglesXYZ = CFrameidentity.ToEulerAnglesXYZ
+
+	local Connections = {}
+
+	local game = game
+	local Players = game:FindFirstChildOfClass("Players")
+	local LocalPlayer = Players.LocalPlayer
+	local Character = LocalPlayer.Character
+	local CharacterAdded = LocalPlayer.CharacterAdded
+	local Connect = CharacterAdded.Connect
+	local Wait = CharacterAdded.Wait
+	local Rig = Players:CreateHumanoidModelFromDescription(Players:GetHumanoidDescriptionFromUserId(LocalPlayer.UserId), Enum.HumanoidRigType.R6)
+	local RigAnimate = Rig:FindFirstChild("Animate")
+	local RigHumanoid = Rig:FindFirstChildOfClass("Humanoid")
+	local RigRootPart = RigHumanoid.RootPart
+	local RunService = game:FindFirstChildOfClass("RunService")
+	local Workspace = game:FindFirstChildOfClass("Workspace")
+	local GetDescendants = game.GetDescendants
+	local IsA = game.IsA
+	local WaitForChild = game.WaitForChild
+
+	local BreakJoints = Instance.new("Model").BreakJoints
+
+	local mathsin = math.sin
+	local next = next
+	local osclock = os.clock
+
+	local RootPartCFrame = nil
+	local Motor6Ds = {}
+
+	local select = select
+	local sethiddenproperty = sethiddenproperty
+	local tableinsert = table.insert
+
+	local Vector3new = Vector3.new
+	local Vector3zero = Vector3.zero
+
+	RigAnimate.Enabled = false
+	Rig.Name = LocalPlayer.Name
+	RigHumanoid.DisplayName = LocalPlayer.DisplayName
+
+	if Character then
+		if rawget(getgenv(), "replicatesignal") then
+			if InstantRespawn then
+			ShowMessage("Wait!","please wait for at least " .. Players.RespawnTime - 0.1 .. " second.", 10)
+				replicatesignal(LocalPlayer.ConnectDiedSignalBackend)
+				task.wait(Players.RespawnTime - 0.1)
+
+				local RootPart = Character:FindFirstChild("HumanoidRootPart")
+				if RootPart then
+					RootPartCFrame = RootPart.CFrame
+				end
+
+				replicatesignal(LocalPlayer.Kill)
+			end
+		else
+			BreakJoints(Character)
+		end
+	end
+
+	Character = Wait(CharacterAdded)
+
+	local Animate = WaitForChild(Character, "Animate")
+	Animate.Enabled = false
+
+	local RootPart = WaitForChild(Character, "HumanoidRootPart")
+	RigRootPart.CFrame = RootPartCFrame or RootPart.CFrame
+
+	local Disconnect = RigHumanoid.Died:Connect(function()
+		for _, Connection in Connections do
+			Connection:Disconnect()
+		end
+		if ParentCharacterToRig then
+			Character.Parent = Rig.Parent
+
+		end
+		BreakJoints(Character)
+		Rig:Destroy()
+	end)
+
+	for _, Descendant in next, GetDescendants(Character) do
+		if IsA(Descendant, "Motor6D") then
+			Motor6Ds[Descendant] = {
+				Part0 = Rig[Descendant.Part0.Name],
+				Part1 = Rig[Descendant.Part1.Name]
+			}
+		end
+	end
+
+	for _, Descendant in next, GetDescendants(Rig) do
+		if IsA(Descendant, "BasePart") then
+			Descendant.Transparency = RigTransparency
+		end
+	end
+
+	Rig.Parent = Workspace
+        Hatless.Rig = Rig
+
+	if ParentCharacterToRig then
+		Character.Parent = Rig
+	end
+
+	task.defer(function()
+		local CurrentCamera = Workspace.CurrentCamera
+		local CameraCFrame = CurrentCamera.CFrame
+
+		LocalPlayer.Character = Rig
+		CurrentCamera.CameraSubject = RigHumanoid
+
+		Wait(RunService.PreRender)
+		Workspace.CurrentCamera.CFrame = CameraCFrame
+	end)
+
+	tableinsert(Connections, RunService.PostSimulation:Connect(function()
+		for Motor6D, Table in next, Motor6Ds do
+			local Part0 = Table.Part0
+			local Part1CFrame = Table.Part1.CFrame
+
+			Motor6D.DesiredAngle = select(3, ToEulerAnglesXYZ(Part1CFrame, Part0.CFrame))
+
+			local Delta = Inverse(Motor6D.C0) * (Inverse(Part0.CFrame) * Part1CFrame) * Motor6D.C1
+			local Axis, Angle = ToAxisAngle(Delta)
+
+			sethiddenproperty(Motor6D, "ReplicateCurrentAngle6D", Axis * Angle)
+			sethiddenproperty(Motor6D, "ReplicateCurrentOffset6D", Delta.Position)
+		end
+
+		-- sethiddenproperty(Motor6D, "ReplicateCurrentAngle6D", Axis * Angle)sethiddenproperty(Motor6D, "ReplicateCurrentOffset6D", Delta.Position)
+
+		RootPart.AssemblyAngularVelocity = Vector3zero
+		RootPart.AssemblyLinearVelocity = Vector3zero
+		RootPart.CFrame = RigRootPart.CFrame + Vector3new(0, mathsin(osclock() * 15) * 0.004, 0)
+	end))
+tableinsert(Connections, RunService.PreSimulation:Connect(function()
+		for _, BasePart in next, GetDescendants(Rig) do
+			if IsA(BasePart, "BasePart") then
+				BasePart.CanCollide = false
+			end
+		end
+
+		if DisableCharacterCollisions and not ParentCharacterToRig then
+			for _, BasePart in next, GetDescendants(Character) do
+				if IsA(BasePart, "BasePart") then
+					BasePart.CanCollide = false
+				end
+			end
+		end
+	end))
+	
+end
+
+return Hatless
