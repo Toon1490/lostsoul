@@ -15,7 +15,7 @@ local ShowMessage = function(t, txt, dur)
 end
 	local DefaultAnimations = true
 	local DisableCharacterCollisions = true
-	local InstantRespawn = true
+	local InstantRespawn = false
 	local ParentCharacterToRig = true
 	local RigTransparency = 1
 
@@ -63,7 +63,24 @@ end
 	Rig.Name = LocalPlayer.Name
 	RigHumanoid.DisplayName = LocalPlayer.DisplayName
 
+	if Character then
+		if rawget(getgenv(), "replicatesignal") then
+			if InstantRespawn then
+			ShowMessage("Wait!","please wait for at least " .. Players.RespawnTime - 0.1 .. " second.", 10)
+				replicatesignal(LocalPlayer.ConnectDiedSignalBackend)
+				task.wait(Players.RespawnTime - 0.1)
 
+				local RootPart = Character:FindFirstChild("HumanoidRootPart")
+				if RootPart then
+					RootPartCFrame = RootPart.CFrame
+				end
+
+				replicatesignal(LocalPlayer.Kill)
+			end
+		else
+			BreakJoints(Character)
+		end
+	end
 
 	Character = Wait(CharacterAdded)
 
