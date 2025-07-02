@@ -1,3 +1,14 @@
+local ShowMessage = function(t, txt, dur)
+    pcall(function()
+        game.StarterGui:SetCore("SendNotification", {
+            Title = t;
+            Text = txt;
+            Icon = "";
+            Duration = dur;
+        })
+    end)
+end
+
 if getgenv().NekoV1Gaze then
     ShowMessage("NekoV1", "Script has already been executed.", 4)
     return
