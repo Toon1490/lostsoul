@@ -1,17 +1,16 @@
 FELOADLIBRARY = {}
 loadstring(game:GetObjects("rbxassetid://5209815302")[1].Source)()
-local Player = game:GetService("Players").LocalPlayer
 local TweenService = game:GetService("TweenService")
 local Create = FELOADLIBRARY.Create
 
 
+local plr = game:GetService("Players").LocalPlayer
+local chr = plr.Character
 
-local Player = game:GetService("Players").LocalPlayer
 
 local ZTfade=false 
 local ZT=false
 
-local mouse = Player:GetMouse()
 local agresive = false
 local Target = Vector3.new()
 local Character= workspace.non
