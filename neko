@@ -20,7 +20,7 @@ ShowMessage("Yeah","gazewazhere", 10)
 
 
 pcall(function()
-local Hatless = loadstring(game:HttpGet("https://raw.githubusercontent.com/somethingsimade/CurrentAngleV2/refs/heads/main/anims"))()
+local Hatless = loadstring(game:HttpGet("https://raw.githubusercontent.com/somethingsimade/CurrentAngleV2/refs/heads/main/v2"))()
 Character = Hatless.Rig
 Hatless.Rig.Name = "non"
 -- hey go die
