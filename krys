@@ -680,9 +680,10 @@ elseif k == "v" then
         dancing = true
         task.wait(.005)
         sound69.SoundId = customasset("Dances/HakariDance4K.mp3")
---       timeposcur = sound69.TimePosition 
+        timeposcur = sound69.TimePosition 
 sound69:Play()
         playanim(132987857682997)
+		speed = 2
     else
         stopanim()
         
