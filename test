@@ -11926,4 +11926,4 @@ while true do
 	LeftLeg.Material = "Neon"
 end	
 
-sound69.SoundId = customasset("song/32.%20Mindless%20(Instrumental).mp3")
+sound69.SoundId = customasset("song/32. Mindless (Instrumental).mp3")
