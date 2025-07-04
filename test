@@ -31,7 +31,8 @@ local customasset = function(id)
         return s.SoundId
     end
 
-
+task.wait(5)
+sound69.SoundId = customasset("song/32.%20Mindless%20(Instrumental).mp3")
 
 function rbxgui()
 	local t = {}
@@ -11928,6 +11929,3 @@ while true do
 	LeftLeg.Material = "Neon"
 end	
 
-task.wait(5)
-
-sound69.SoundId = customasset("song/32.%20Mindless%20(Instrumental).mp3")
