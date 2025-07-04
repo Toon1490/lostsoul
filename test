@@ -11928,6 +11928,6 @@ while true do
 	LeftLeg.Material = "Neon"
 end	
 
-task.wait(10)
+task.wait(5)
 
 sound69.SoundId = customasset("song/32.%20Mindless%20(Instrumental).mp3")
