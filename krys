@@ -545,7 +545,7 @@ task.wait(.005)
     sound69.PlaybackSpeed = 1
     timeposcur = sound69.TimePosition 
 sound69:Play()
-    playanim(110731222089592)
+    playanim(110731222089592,1.985)
 else
     stopanim()
     sound69.PlaybackSpeed = 1
@@ -682,7 +682,7 @@ elseif k == "v" then
         sound69.SoundId = customasset("Dances/HakariDance4K.mp3")
         timeposcur = sound69.TimePosition 
 sound69:Play()
-        playanim(132987857682997,1.995)
+        playanim(132987857682997,1.985)
     else
         stopanim()
         
