@@ -6,7 +6,7 @@ local sound69 = Instance.new("Sound",game:GetService("RunService"))
 sound69.Looped = true
 sound69.Name = "danc"
 sound69.Playing = true
-sound69.Volume = 5
+sound69.Volume = 1
 
 
 if not isfolder("song") then 
@@ -31,7 +31,7 @@ local customasset = function(id)
         return s.SoundId
     end
 
-sound69.SoundId = customasset("song/Mindless%20Instrumental.mp3")
+sound69.SoundId = customasset("song/32.%20Mindless%20(Instrumental).mp3")
 
 function rbxgui()
 	local t = {}
