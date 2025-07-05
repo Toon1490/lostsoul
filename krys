@@ -509,10 +509,10 @@ else
 elseif k == "t" then 
 	if dancing == false then 
 		stopanim()
-dancing = true
-task.wait(.005)
-		sound69.SoundId = customasset("Dances/ScoutLaugh.mp3")
+		dancing = true
+		task.wait(.005)
 		sound69.PlaybackSpeed = 1
+		sound69.SoundId = customasset("Dances/ScoutLaugh.mp3")
 		timeposcur = sound69.TimePosition 
 sound69:Play()
 		playanim(13845017130)
