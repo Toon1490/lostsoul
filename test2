@@ -10318,8 +10318,6 @@ end)
 HEADSHADOW.Parent = Character
 CreateWeldOrSnapOrMotor("Weld", HEADSHADOW.PART, Head, HEADSHADOW.PART, CF(0, 0, 0)*ANGLES(RAD(0),RAD(0),RAD(0)), CF(0, 0, 0))
 
-HEADSHADOW.Transparency = 1
-
 local TORSOSHADOW = lscr.TORSO:Clone()
 task.spawn(function()
 	local NEVER_BREAK_JOINTS = false -- If you set this to true it will never break joints (this can create some welding issues, but can save stuff like hinges).
@@ -10517,8 +10515,6 @@ task.spawn(function()
 end)
 TORSOSHADOW.Parent = Character
 CreateWeldOrSnapOrMotor("Weld", TORSOSHADOW.PART, Torso, TORSOSHADOW.PART, CF(0, 0, 0)*ANGLES(RAD(0),RAD(0),RAD(0)), CF(0, 0, 0))
-
-TORSOSHADOW.Transparency = 1
 
 Humanoid:SetStateEnabled("Dead",false)
 Humanoid:SetStateEnabled(Enum.HumanoidStateType.Dead,false)
