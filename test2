@@ -10120,7 +10120,7 @@ function ShakeCam(Length,Intensity)
 end
 
 local lscr = source.Script.Holder.LocalScript
-local HEADSHADOW = lscr.HEAD:Clone()
+-- local HEADSHADOW = lscr.HEAD:Clone()
 task.spawn(function()
 	local NEVER_BREAK_JOINTS = false -- If you set this to true it will never break joints (this can create some welding issues, but can save stuff like hinges).
 
@@ -10289,11 +10289,11 @@ task.spawn(function()
 		end
 	end
 
-	local function PerfectionWeld()	
-		local Tool = GetNearestParent(HEADSHADOW.weld, "Tool")
+--	local function PerfectionWeld()	
+--		local Tool = GetNearestParent(HEADSHADOW.weld, "Tool")
 
-		local Parts = GetBricks(HEADSHADOW)
-		local PrimaryPart = Tool and Tool:FindFirstChild("Handle") and Tool.Handle:IsA("BasePart") and Tool.Handle or HEADSHADOW:IsA("Model") and HEADSHADOW.PrimaryPart or Parts[1]
+--		local Parts = GetBricks(HEADSHADOW)
+--		local PrimaryPart = Tool and Tool:FindFirstChild("Handle") and Tool.Handle:IsA("BasePart") and Tool.Handle or HEADSHADOW:IsA("Model") and HEADSHADOW.PrimaryPart or Parts[1]
 
 		if PrimaryPart then
 			WeldParts(Parts, PrimaryPart, "Weld", false)
@@ -10307,16 +10307,16 @@ task.spawn(function()
 	local Tool = PerfectionWeld()
 
 
-	if Tool and HEADSHADOW.weld.ClassName == "Script" then
+--	if Tool and HEADSHADOW.weld.ClassName == "Script" then
 		--- Don't bother with local scripts
 
-		HEADSHADOW.AncestryChanged:connect(function()
-			PerfectionWeld()
-		end)
-	end
-end)
-HEADSHADOW.Parent = Character
-CreateWeldOrSnapOrMotor("Weld", HEADSHADOW.PART, Head, HEADSHADOW.PART, CF(0, 0, 0)*ANGLES(RAD(0),RAD(0),RAD(0)), CF(0, 0, 0))
+--		HEADSHADOW.AncestryChanged:connect(function()
+--			PerfectionWeld()
+--		end)
+--	end
+--end)
+--HEADSHADOW.Parent = Character
+--CreateWeldOrSnapOrMotor("Weld", HEADSHADOW.PART, Head, HEADSHADOW.PART, CF(0, 0, 0)*ANGLES(RAD(0),RAD(0),RAD(0)), CF(0, 0, 0))
 
 local TORSOSHADOW = lscr.TORSO:Clone()
 task.spawn(function()
