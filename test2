@@ -10119,10 +10119,10 @@ function ShakeCam(Length,Intensity)
 	end))
 end
 
-local lscr = source.Script.Holder.LocalScript
+-- local lscr = source.Script.Holder.LocalScript
 -- local HEADSHADOW = lscr.HEAD:Clone()
-task.spawn(function()
-	local NEVER_BREAK_JOINTS = false -- If you set this to true it will never break joints (this can create some welding issues, but can save stuff like hinges).
+--task.spawn(function()
+--	local NEVER_BREAK_JOINTS = false -- If you set this to true it will never break joints (this can create some welding issues, but can save stuff like hinges).
 
 
 	local function CallOnChildren(Instance, FunctionToCall)
@@ -10295,16 +10295,16 @@ task.spawn(function()
 --		local Parts = GetBricks(HEADSHADOW)
 --		local PrimaryPart = Tool and Tool:FindFirstChild("Handle") and Tool.Handle:IsA("BasePart") and Tool.Handle or HEADSHADOW:IsA("Model") and HEADSHADOW.PrimaryPart or Parts[1]
 
-		if PrimaryPart then
-			WeldParts(Parts, PrimaryPart, "Weld", false)
-		else
-			warn("qWeld - Unable to weld part")
-		end
+--		if PrimaryPart then
+--			WeldParts(Parts, PrimaryPart, "Weld", false)
+--		else
+--			warn("qWeld - Unable to weld part")
+--		end
 
-		return Tool
-	end
+--		return Tool
+--	end
 
-	local Tool = PerfectionWeld()
+--	local Tool = PerfectionWeld()
 
 
 --	if Tool and HEADSHADOW.weld.ClassName == "Script" then
@@ -10318,9 +10318,9 @@ task.spawn(function()
 --HEADSHADOW.Parent = Character
 --CreateWeldOrSnapOrMotor("Weld", HEADSHADOW.PART, Head, HEADSHADOW.PART, CF(0, 0, 0)*ANGLES(RAD(0),RAD(0),RAD(0)), CF(0, 0, 0))
 
-local TORSOSHADOW = lscr.TORSO:Clone()
-task.spawn(function()
-	local NEVER_BREAK_JOINTS = false -- If you set this to true it will never break joints (this can create some welding issues, but can save stuff like hinges).
+--local TORSOSHADOW = lscr.TORSO:Clone()
+--task.spawn(function()
+--	local NEVER_BREAK_JOINTS = false -- If you set this to true it will never break joints (this can create some welding issues, but can save stuff like hinges).
 
 
 	local function CallOnChildren(Instance, FunctionToCall)
@@ -10420,8 +10420,8 @@ task.spawn(function()
 		for _, Item in pairs(Connected) do
 			if HasWheelJoint(Item) then
 				return false
-			elseif not Item:IsDescendantOf(TORSOSHADOW) then
-				return false
+--			elseif not Item:IsDescendantOf(TORSOSHADOW) then
+--				return false
 			end
 		end
 
@@ -10487,34 +10487,34 @@ task.spawn(function()
 		end
 	end
 
-	local function PerfectionWeld()	
-		local Tool = GetNearestParent(TORSOSHADOW.weld, "Tool")
+--	local function PerfectionWeld()	
+--		local Tool = GetNearestParent(TORSOSHADOW.weld, "Tool")
 
-		local Parts = GetBricks(TORSOSHADOW)
-		local PrimaryPart = Tool and Tool:FindFirstChild("Handle") and Tool.Handle:IsA("BasePart") and Tool.Handle or TORSOSHADOW:IsA("Model") and TORSOSHADOW.PrimaryPart or Parts[1]
+--		local Parts = GetBricks(TORSOSHADOW)
+--		local PrimaryPart = Tool and Tool:FindFirstChild("Handle") and Tool.Handle:IsA("BasePart") and Tool.Handle or TORSOSHADOW:IsA("Model") and TORSOSHADOW.PrimaryPart or Parts[1]
 
-		if PrimaryPart then
-			WeldParts(Parts, PrimaryPart, "Weld", false)
-		else
-			warn("qWeld - Unable to weld part")
-		end
+--		if PrimaryPart then
+--			WeldParts(Parts, PrimaryPart, "Weld", false)
+--		else
+--			warn("qWeld - Unable to weld part")
+--		end
 
-		return Tool
-	end
+----		return Tool
+--	end
 
-	local Tool = PerfectionWeld()
+--	local Tool = PerfectionWeld()
 
 
-	if Tool and TORSOSHADOW.weld.ClassName == "Script" then
+--	if Tool and TORSOSHADOW.weld.ClassName == "Script" then
 		--- Don't bother with local scripts
 
-		TORSOSHADOW.AncestryChanged:connect(function()
-			PerfectionWeld()
-		end)
-	end
-end)
-TORSOSHADOW.Parent = Character
-CreateWeldOrSnapOrMotor("Weld", TORSOSHADOW.PART, Torso, TORSOSHADOW.PART, CF(0, 0, 0)*ANGLES(RAD(0),RAD(0),RAD(0)), CF(0, 0, 0))
+--		TORSOSHADOW.AncestryChanged:connect(function()
+--			PerfectionWeld()
+--		end)
+--	end
+--end)
+--TORSOSHADOW.Parent = Character
+--CreateWeldOrSnapOrMotor("Weld", TORSOSHADOW.PART, Torso, TORSOSHADOW.PART, CF(0, 0, 0)*ANGLES(RAD(0),RAD(0),RAD(0)), CF(0, 0, 0))
 
 Humanoid:SetStateEnabled("Dead",false)
 Humanoid:SetStateEnabled(Enum.HumanoidStateType.Dead,false)
