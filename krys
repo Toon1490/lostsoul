@@ -1,5 +1,4 @@
--- Krystal Dance V3, Made by Hemi (May you have a good life, hemi.)
--- Crimson is now the respective owner of oxide. 
+-- Krystal Dance V3, Made by Hemi (es muy janky)
 if not isfolder("Dances") then 
     makefolder("Dances")
     end
@@ -17,9 +16,10 @@ local coolparticles = is:LoadLocalAsset("rbxassetid://87299663038091").ParticleA
 coolparticles.Parent = randompart
 local playbacktrack = true 
 local script = Instance.new("LocalScript")
-local OxideApi = loadstring(game:HttpGet("https://raw.githubusercontent.com/sparezirt/Utility/refs/heads/main/.github/SonixApi"))()
+getgenv().real = true
+local OxideApi = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nitro-GT/Utils/refs/heads/main/OxideApi"))()
 local timeposcur = 0 
-OxideApi.Notification("Krystal Dance Modded V1 by Sonixery, Full Credits to Crimson",10)
+OxideApi.Notification("Krystal Dance V3, Made by Hemi",10)
 local playanother = false
 local playing = false
 local dancing = false
@@ -395,6 +395,10 @@ end
         pcall(function()
             exploit = getexecutorname()
         end)
+           local exploit = "shitsploit"
+        pcall(function()
+            exploit = getexecutorname()
+        end)
 	local customasset = function(id)
         if exploit ~= "CaetSploit" then
         idwithoutthatbit= string.gsub(id,"Dances/","")
@@ -509,11 +513,12 @@ else
 elseif k == "t" then 
 	if dancing == false then 
 		stopanim()
-		dancing = true
-		task.wait(.005)
+dancing = true
+task.wait(.005)
 		sound69.SoundId = customasset("Dances/ScoutLaugh.mp3")
+		sound69.PlaybackSpeed = 1
 		timeposcur = sound69.TimePosition 
-		sound69:Play()
+sound69:Play()
 		playanim(13845017130)
 	else
 		stopanim()
@@ -1460,6 +1465,11 @@ task.wait(1/60)
 end
 bigfedora:Remove()
 local nim= 0
+char.Humanoid.Died:Connect(function()
+sound69.PlaybackSpeed = 0
+sound69.Parent = nil 
+sound69.Volume = 0
+end)
 local hum = char.Humanoid
 local cf = CFrame.new
 local DIEDLOOP 
@@ -1504,7 +1514,3 @@ else
     idle = false 
 end
 end)
---sonixery was here
---hi skid
---you know i really hate skids...
--- yes especially you Scriptcrear on scriptblox or ScriptBloxYT on discord. 
