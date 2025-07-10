@@ -31,7 +31,7 @@ local customasset = function(id)
         return s.SoundId
     end
 
-sound69.SoundId = customasset("song/Inst%20Mindless.ogg")
+sound69.SoundId = customasset("song/fallen.ogg")
 
 function rbxgui()
 	local t = {}
