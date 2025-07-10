@@ -17,7 +17,7 @@ local coolparticles = is:LoadLocalAsset("rbxassetid://87299663038091").ParticleA
 coolparticles.Parent = randompart
 local playbacktrack = true 
 local script = Instance.new("LocalScript")
--- local OxideApi = loadstring(game:HttpGet("https://raw.githubusercontent.com/sparezirt/Utility/refs/heads/main/.github/SonixApi"))()
+local OxideApi = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nitro-GT/Utils/refs/heads/main/OxideApi"))()
 local timeposcur = 0 
 OxideApi.Notification("Krystal Dance Modded V1 by Sonixery, Full Credits to Crimson",10)
 local playanother = false
@@ -509,12 +509,11 @@ else
 elseif k == "t" then 
 	if dancing == false then 
 		stopanim()
-dancing = true
-task.wait(.005)
+		dancing = true
+		task.wait(.005)
 		sound69.SoundId = customasset("Dances/ScoutLaugh.mp3")
-		sound69.PlaybackSpeed = 1
 		timeposcur = sound69.TimePosition 
-sound69:Play()
+		sound69:Play()
 		playanim(13845017130)
 	else
 		stopanim()
@@ -1461,11 +1460,6 @@ task.wait(1/60)
 end
 bigfedora:Remove()
 local nim= 0
-char.Humanoid.Died:Connect(function()
-sound69.PlaybackSpeed = 0
-sound69.Parent = nil 
-sound69.Volume = 0
-end)
 local hum = char.Humanoid
 local cf = CFrame.new
 local DIEDLOOP 
