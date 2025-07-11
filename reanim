@@ -422,7 +422,7 @@ local function stepReanimate()
 		newcharRoot.CFrame = poscache 
         + Vector3_new(0, 1000000000, 0)
 	else
-		newcharRoot.CFrame = fakeChar.HumanoidRootPart.CFrame + Vector3_new(0, math_random(1, 2) / 100.19, 0)
+		newcharRoot.CFrame = fakeChar.HumanoidRootPart.CFrame + Vector3_new(0, 1000000000, 0)
 	end
 
 	--// YES it is unstable. im working on optimizing (later)
